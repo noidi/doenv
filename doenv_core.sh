@@ -22,7 +22,7 @@ if [[ -f $token_file ]]; then
   token=$(gpg --batch \
               --quiet \
               --decrypt \
-              --passphrase-file <(echo $password) \
+              --passphrase-file <(echo "$password") \
               --pinentry-mode loopback \
               "$token_file")
 else
@@ -33,10 +33,10 @@ else
       --quiet \
       --symmetric \
       --cipher-algo AES256 \
-      --passphrase-file <(echo $password) \
+      --passphrase-file <(echo "$password") \
       --pinentry-mode loopback \
       -o "$token_file" \
-      <(echo $token)
+      <(echo "$token")
 fi
 
-env DIGITALOCEAN_ACCESS_TOKEN="$token" $@
+env DIGITALOCEAN_ACCESS_TOKEN="$token" "$@"

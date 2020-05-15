@@ -1,4 +1,4 @@
-__doenv_dir=$(cd $(dirname "$BASH_SOURCE") && pwd)
+__doenv_dir=$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)
 
 function doenv {
   if [[ -z ${__doenv_password+x} ]]; then
@@ -6,5 +6,5 @@ function doenv {
     echo
     PS1="DO $PS1"
   fi
-  bash "${__doenv_dir}/doenv_core.sh" <(echo $__doenv_password) $@
+  bash "${__doenv_dir}/doenv_core.sh" <(echo "$__doenv_password") "$@"
 }
