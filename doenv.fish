@@ -1,4 +1,4 @@
-set __doenv_dir (cd (dirname (status --current-filename)); and pwd)
+set __doenv_dir (pushd (dirname (status --current-filename)); and pwd; and popd)
 
 function doenv
     if not set -q __doenv_password
